@@ -17,28 +17,33 @@ spec:
         - name: fr-youhanna-makin
           image: markmorcos/fr-youhanna-makin:latest
           env:
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: rails-secret
+                  key: SECRET_KEY_BASE
             - name: PGDATABASE
               valueFrom:
                 secretKeyRef:
-                  name: fr-youhanna-makin-postgres-secret
+                  name: postgres-secrets
                   key: PGDATABASE
             - name: PGUSER
               valueFrom:
                 secretKeyRef:
-                  name: fr-youhanna-makin-postgres-secret
+                  name: postgres-secrets
                   key: PGUSER
             - name: PGPASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: fr-youhanna-makin-postgres-secret
+                  name: postgres-secrets
                   key: PGPASSWORD
             - name: PGHOST
               valueFrom:
                 secretKeyRef:
-                  name: fr-youhanna-makin-postgres-secret
+                  name: postgres-secrets
                   key: PGHOST
             - name: PGPORT
               valueFrom:
                 secretKeyRef:
-                  name: fr-youhanna-makin-postgres-secret
+                  name: postgres-secrets
                   key: PGPORT

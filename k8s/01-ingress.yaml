@@ -17,8 +17,8 @@ spec:
     - host: mark.onthewifi.com
       http:
         paths:
-          - path: /fr-youhanna-makin/?(.*)
-            pathType: ImplementationSpecific
+          - path: /fr-youhanna-makin
+            pathType: Prefix
             backend:
               service:
                 name: fr-youhanna-makin-service

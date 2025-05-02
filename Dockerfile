@@ -21,7 +21,10 @@ COPY . .
 
 # Precompile assets and run DB migrations (optional for production images)
 # These steps can also be handled in the entrypoint or CI/CD pipeline
-RUN RAILS_ENV=production SECRET_KEY_BASE_DUMMY=1 bundle exec rake assets:precompile
+RUN RAILS_ENV=production \
+    SECRET_KEY_BASE_DUMMY=1 \
+    RAILS_RELATIVE_URL_ROOT=/fr-youhanna-makin \
+    bundle exec rake assets:precompile
 
 # Set environment variables
 ENV RAILS_ENV=production
