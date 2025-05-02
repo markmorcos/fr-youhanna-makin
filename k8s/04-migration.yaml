@@ -1,0 +1,41 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: rails-db-migrate
+  namespace: fr-youhanna-makin
+spec:
+  template:
+    spec:
+      containers:
+        - name: migrate
+          image: markmorcos/fr-youhanna-makin:latest
+          command: ["bundle", "exec", "rails", "db:migrate"]
+          env:
+            - name: RAILS_ENV
+              value: production
+            - name: PGHOST
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: PGHOST
+            - name: PGUSER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: PGUSER
+            - name: PGPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: PGPASSWORD
+            - name: PGDATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: PGDATABASE
+            - name: PGPORT
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secrets
+                  key: PGPORT
+            - name: SECRET_KEY_BASE
